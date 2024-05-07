@@ -16,6 +16,16 @@ public extension FlowProvider {
   func pop(animated: Bool = true) {
     navigationController.popViewController(animated: animated)
   }
+    
+    func popLastScreen(animated: Bool = true) {
+        if navigationController.viewControllers.count >= 2 {
+            navigationController.viewControllers.remove(at: 1)
+        }
+    }
+    
+    func changeRootView<C: View>(_ view: C) {
+        navigationController.viewControllers.insert(_wrap(view), at: 0)
+    }
   
   // MARK: - Pop View with Specific Count
   func pop(_ count: Int, animated: Bool = true) {
