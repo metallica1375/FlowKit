@@ -23,6 +23,12 @@ public extension FlowProvider {
         }
     }
     
+    func removeLastScreen() {
+        if navigationController.viewControllers.count >= 2 {
+            navigationController.viewControllers.remove(at: navigationController.viewControllers.count - 2)
+        }
+    }
+    
     func changeRootView<C: View>(_ view: C) {
         navigationController.viewControllers.insert(_wrap(view), at: 0)
     }
