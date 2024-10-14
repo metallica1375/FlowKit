@@ -29,6 +29,27 @@ public extension FlowProvider {
         }
     }
     
+    func disableSwipe() {
+        navigationController.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
+    func enableSwipe() {
+        navigationController.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    
+    func removeRest<C: View>(_ view: C, animated: Bool = true) {
+        
+        guard let lastView = navigationController.viewControllers.last else { return }
+        
+        let viewControllers: [UIViewController] = [_wrap(view), lastView]
+        navigationController.setViewControllers(viewControllers, animated: false)
+        
+    }
+    
+    func printViewCount() {
+        print(navigationController.viewControllers.count)
+    }
+    
     func changeRootView<C: View>(_ view: C) {
         navigationController.viewControllers.insert(_wrap(view), at: 0)
     }
