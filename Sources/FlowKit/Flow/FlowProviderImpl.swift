@@ -94,15 +94,4 @@ public extension FlowProvider {
     navigationController.present(alert.toAlertController(), animated: animated)
   }
   
-  // MARK: - Exit
-  func exit(_ animated: Bool = true) {
-    if animated {
-      UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-        _SwiftConcurrencyShims.exit(0)
-      }
-    } else {
-      _SwiftConcurrencyShims.exit(0)
-    }
-  }
 }
