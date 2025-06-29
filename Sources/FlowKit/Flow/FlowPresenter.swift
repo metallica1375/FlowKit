@@ -1,13 +1,13 @@
 import SwiftUI
 
-@available(iOS 13, *)
+@available(iOS 14, *)
 public struct FlowPresenter<C: View>: View {
   
-  @ObservedObject var flow: FlowProvider
+  @StateObject var flow: FlowProvider
   
   public init(rootView: C, customNavigationController: NavigationControllerSettings? = nil) {
-    flow = FlowProvider(rootView: rootView,
-                        customNavigationController: customNavigationController)
+    _flow = State(wrappedValue: FlowProvider(rootView: rootView,
+                                             customNavigationController: customNavigationController))
   }
   
   public var body: some View {
