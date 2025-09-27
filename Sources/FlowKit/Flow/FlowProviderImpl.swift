@@ -46,6 +46,14 @@ public extension FlowProvider {
         
     }
     
+    func removeAll() {
+        if let last = navigationController.viewControllers.last {
+            navigationController.viewControllers = [last]
+        } else {
+            navigationController.viewControllers.removeAll()
+        }
+    }
+    
     func printViewCount() {
         print(navigationController.viewControllers.count)
     }
